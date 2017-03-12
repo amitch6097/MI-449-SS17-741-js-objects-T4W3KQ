@@ -15,8 +15,6 @@ if (jokes === null) {
 } else {
   jokes = JSON.parse(jokes)
 }
-console.log(jokes)
-
 // The message to display if the jokes object is empty
 var noJokesMessage = 'I... I don\'t know any jokes. 😢'
 
