@@ -40,15 +40,15 @@ var requestedJokeInput = document.getElementById('requested-joke')
 var jokeBox = document.getElementById('joke-box')
 var updateDisplayedJoke = function () {
   var requestedJokeKey = requestedJokeInput.value
-  if (requestedJokeKey in jokes){
+  if (requestedJokeKey in jokes) {
     jokeBox.textContent = jokes[requestedJokeKey].setup + ' ' + jokes[requestedJokeKey].punchline
   } else {
-    jokeBox.textContent = "No matching joke found."
+    jokeBox.textContent = 'No matching joke found.'
   }
 }
 
-function updateLocal() {
-  stringJokes = JSON.stringify(jokes)
+function updateLocal () {
+  var stringJokes = JSON.stringify(jokes)
   window.localStorage.setItem('jokes', stringJokes)
 }
 
@@ -70,13 +70,13 @@ updatePage()
 
 rememberJokeButton.addEventListener('click', addJoke)
 
-function addJoke() {
+function addJoke () {
   var about = document.getElementById('about').value
   var setup = document.getElementById('setup').value
   var punchline = document.getElementById('punchline').value
-  if(!about || !setup || !punchline){
-    window.alert("Not all the information is filled in!")
-  } else{
+  if (!about || !setup || !punchline) {
+    window.alert('Not all the information is filled in!')
+  } else {
     jokes[about] = {}
     jokes[about].setup = setup
     jokes[about].punchline = punchline
@@ -86,7 +86,7 @@ function addJoke() {
 
 forgetJokeButton.addEventListener('click', removeJoke)
 
-function removeJoke() {
+function removeJoke () {
   var about = document.getElementById('remove-joke').value
   delete jokes[about]
   updatePage()
