@@ -41,7 +41,8 @@ var jokeBox = document.getElementById('joke-box')
 var updateDisplayedJoke = function () {
   var requestedJokeKey = requestedJokeInput.value
   if (requestedJokeKey in jokes) {
-    jokeBox.textContent = jokes[requestedJokeKey].setup + ' ' + jokes[requestedJokeKey].punchline
+    jokeBox.innerHTML = '<p>' + jokes[requestedJokeKey].setup + '<p>' +
+                        '</p>' + jokes[requestedJokeKey].punchline + '<p>'
   } else {
     jokeBox.textContent = 'No matching joke found.'
   }
@@ -61,14 +62,11 @@ var updatePage = function () {
   updateLocal()
 }
 
-// -------
-// STARTUP
-// -------
-
-// Update the page immediately on startup
-updatePage()
-
-rememberJokeButton.addEventListener('click', addJoke)
+function removeJoke () {
+  var about = document.getElementById('remove-joke').value
+  delete jokes[about]
+  updatePage()
+}
 
 function addJoke () {
   var about = document.getElementById('about').value
@@ -84,13 +82,18 @@ function addJoke () {
   }
 }
 
-forgetJokeButton.addEventListener('click', removeJoke)
+// -------
+// STARTUP
+// -------
 
-function removeJoke () {
-  var about = document.getElementById('remove-joke').value
-  delete jokes[about]
-  updatePage()
-}
+// Update the page immediately on startup
+updatePage()
+
+// when the add joke button is clicked
+rememberJokeButton.addEventListener('click', addJoke)
+
+// when the add forget joke button is clicked
+forgetJokeButton.addEventListener('click', removeJoke)
 
 // Keep the requested joke up-to-date
 requestedJokeInput.addEventListener('input', updateDisplayedJoke)
